@@ -7,6 +7,7 @@ import 'package:bmi_calculator/components/card_icon_text.dart';
 const bottomContainerHeight = 80.0;
 const bottomContainerColor = Color(0xFFEB1555);
 const activeCardColor = Color(0xFF1D1E33);
+const inActiveCardColor = Color(0xFF111328);
 
 class InputPage extends StatefulWidget {
   @override
@@ -14,6 +15,19 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Color maleColor = inActiveCardColor;
+  Color femaleColor = inActiveCardColor;
+
+  void onGenderChange(String gender) {
+    if (gender == "MALE") {
+      maleColor = activeCardColor;
+      femaleColor = inActiveCardColor;
+    } else {
+      maleColor = inActiveCardColor;
+      femaleColor = activeCardColor;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,19 +40,33 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                      child: ReusableCard(
-                    colour: activeCardColor,
-                    child: CardIconText(
-                      cardIcon: FontAwesomeIcons.mars,
-                      cardText: "MALE",
+                      child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        onGenderChange("MALE");
+                      });
+                    },
+                    child: ReusableCard(
+                      colour: maleColor,
+                      child: CardIconText(
+                        cardIcon: FontAwesomeIcons.mars,
+                        cardText: "MALE",
+                      ),
                     ),
                   )),
                   Expanded(
-                      child: ReusableCard(
-                    colour: activeCardColor,
-                    child: CardIconText(
-                      cardIcon: FontAwesomeIcons.venus,
-                      cardText: "FEMALE",
+                      child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        onGenderChange("thing");
+                      });
+                    },
+                    child: ReusableCard(
+                      colour: femaleColor,
+                      child: CardIconText(
+                        cardIcon: FontAwesomeIcons.venus,
+                        cardText: "FEMALE",
+                      ),
                     ),
                   )),
                 ],
