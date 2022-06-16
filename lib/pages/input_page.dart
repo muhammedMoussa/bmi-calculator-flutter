@@ -17,7 +17,6 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Color maleColor = inActiveCardColor;
   Color femaleColor = inActiveCardColor;
-
   void onGenderChange(String gender) {
     if (gender == "MALE") {
       maleColor = activeCardColor;
@@ -40,35 +39,27 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                      child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        onGenderChange("MALE");
-                      });
-                    },
-                    child: ReusableCard(
-                      colour: maleColor,
-                      child: CardIconText(
-                        cardIcon: FontAwesomeIcons.mars,
-                        cardText: "MALE",
-                      ),
-                    ),
-                  )),
+                      child: ReusableCard(
+                        colour: maleColor,
+                        onClick: () => setState(() {
+                          onGenderChange("MALE");
+                        }),
+                        child: CardIconText(
+                          cardIcon: FontAwesomeIcons.mars,
+                          cardText: "MALE",
+                        ),
+                      )),
                   Expanded(
-                      child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        onGenderChange("thing");
-                      });
-                    },
-                    child: ReusableCard(
-                      colour: femaleColor,
-                      child: CardIconText(
-                        cardIcon: FontAwesomeIcons.venus,
-                        cardText: "FEMALE",
-                      ),
-                    ),
-                  )),
+                      child: ReusableCard(
+                        onClick: () => setState(() {
+                          onGenderChange("thing");
+                        }),
+                        colour: femaleColor,
+                        child: CardIconText(
+                          cardIcon: FontAwesomeIcons.venus,
+                          cardText: "FEMALE",
+                        ),
+                      )),
                 ],
               ),
             ),
