@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -13,6 +15,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Color maleColor = kInActiveCardColor;
   Color femaleColor = kInActiveCardColor;
+  int height = 180;
+
   void onGenderChange(String gender) {
     if (gender == "MALE") {
       maleColor = kActiveCardColor;
@@ -59,7 +63,45 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            Expanded(child: ReusableCard(colour: kActiveCardColor)),
+            Expanded(
+                child: ReusableCard(
+              colour: kActiveCardColor,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'HEIGHT', style: kLabelTextStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: <Widget>[
+                      Text(
+                          height.toString(),
+                        style: kNumberTextStyle
+                      ),
+                      Text(
+                        'cm',
+                        style: kLabelTextStyle,
+                      ),
+                    ],
+                  ),
+                  Slider(
+                      value: height.toDouble(),
+                      activeColor: Color(0xFFEB1555),
+                      inactiveColor: Color(0xFF8D8E98),
+                      min: 122.0,
+                      max: 222.0,
+                      onChanged: (ev) {
+                        setState(() {
+                          height = ev.round();
+                        });
+                      }
+                  ),
+                ],
+              ),
+            )),
             Expanded(
               child: Row(
                 children: <Widget>[
