@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-const cardChildColor = Color(0xFF8D8098);
+import 'package:bmi_calculator/utils/constants.dart';
 
 class CardIconText extends StatelessWidget {
   CardIconText({@required this.cardIcon, this.cardText});
@@ -21,8 +20,7 @@ class CardIconText extends StatelessWidget {
             height: 10.0,
           ),
           Text(cardText,
-              style: TextStyle(
-                  fontSize: 18.0, color: cardChildColor)),
+              style: TextStyle(fontSize: 18.0, color: kCardChildColor)),
         ]);
   }
 }
