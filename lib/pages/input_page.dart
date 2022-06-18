@@ -1,10 +1,10 @@
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:bmi_calculator/components/card_icon_text.dart';
+import 'package:bmi_calculator/components/round_icon_button.dart';
 import 'package:bmi_calculator/utils/constants.dart';
 
 class InputPage extends StatefulWidget {
@@ -16,6 +16,8 @@ class _InputPageState extends State<InputPage> {
   Color maleColor = kInActiveCardColor;
   Color femaleColor = kInActiveCardColor;
   int height = 180;
+  int weight = 60;
+  int age = 20;
 
   void onGenderChange(String gender) {
     if (gender == "MALE") {
@@ -112,9 +114,87 @@ class _InputPageState extends State<InputPage> {
             )),
             Expanded(
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Expanded(child: ReusableCard(colour: kActiveCardColor)),
-                  Expanded(child: ReusableCard(colour: kActiveCardColor)),
+                  Expanded(
+                    child: ReusableCard(
+                    colour: kActiveCardColor,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'WEIGHT',
+                          style: kLabelTextStyle  ,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                            ),
+                            SizedBox(width: 10.0),
+                            RoundIconButton(
+                              icon: Icons.add,
+                              onPressed: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  )),
+                  Expanded(
+                      child: ReusableCard(
+                        colour: kActiveCardColor,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              'AGE',
+                              style: kLabelTextStyle  ,
+                            ),
+                            Text(
+                              age.toString(),
+                              style: kNumberTextStyle,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                RoundIconButton(
+                                  icon: FontAwesomeIcons.minus,
+                                  onPressed: () {
+                                    setState(() {
+                                      age--;
+                                    });
+                                  },
+                                ),
+                                SizedBox(width: 10.0),
+                                RoundIconButton(
+                                  icon: Icons.add,
+                                  onPressed: () {
+                                    setState(() {
+                                      age++;
+                                    });
+                                  },
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                      )
+                  ),
                 ],
               ),
             ),
