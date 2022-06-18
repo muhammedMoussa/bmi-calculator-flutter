@@ -206,7 +206,7 @@ class _InputPageState extends State<InputPage> {
                 color: kBottomContainerColor,
                 margin: EdgeInsets.only(top: 10.0),
                 height: kBottomContainerHeight,
-                child: Text('JJ'),
+                child: Center(child: Text('CALCULATE', style: kLargeButtonTextStyle,)),
               ),
             )
           ],
